@@ -13,7 +13,6 @@ python -m SimpleHTTPServer 80 &
 PID=$!
 certbot certonly --webroot -w $HOME -n --agree-tos --email ${EMAIL} --no-self-upgrade \
 	-d networkreliability.engineering \
-	-d blog.networkreliability.engineering \
 	-d k8s.networkreliability.engineering \
 	-d labs.networkreliability.engineering \
 	-d ptr.labs.networkreliability.engineering \
