@@ -11,7 +11,13 @@ NAMESPACE=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
 cd $HOME
 python -m SimpleHTTPServer 80 &
 PID=$!
-certbot certonly --webroot -w $HOME -n --agree-tos --email ${EMAIL} --no-self-upgrade -d ${DOMAINS}
+certbot certonly --webroot -w $HOME -n --agree-tos --email ${EMAIL} --no-self-upgrade \
+	-d networkreliability.engineering \
+	-d *.networkreliability.engineering \
+	-d k8s.networkreliability.engineering \
+	-d labs.networkreliability.engineering \
+	-d ptr.labs.networkreliability.engineering \
+	-d vip.labs.networkreliability.engineering
 kill $PID
 
 CERTPATH=/etc/letsencrypt/live/$(echo $DOMAINS | cut -f1 -d',')
